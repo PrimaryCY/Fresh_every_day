@@ -1,0 +1,17 @@
+django
+pillow
+mysqlclient
+djangorestframework
+markdown
+django-filter
+django-crispy-forms
+django-reversion
+django-formtools
+six
+coreapi
+django-cors-headers
+drf-extensions
+django-redis
+pycryptodome
+raven
+django-import-export
