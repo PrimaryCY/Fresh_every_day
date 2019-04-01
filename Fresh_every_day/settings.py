@@ -215,8 +215,8 @@ SMS_CONF={'data':"""
                     </destinationAddresses>
                     <message>【我的私人项目】亲爱的{user}，您的验证码是{code}。有效期为{min}，请尽快验证</message>
                     <extendCode>5</extendCode>
-                    <applicationId>zzb3</applicationId>
-                    <password>VBunGt5VLv4V</password>
+                    <applicationId>*****</applicationId>
+                    <password>*********</password>
                 </SendMessage3>
             </s:Body>
         </s:Envelope>
