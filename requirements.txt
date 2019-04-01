@@ -15,3 +15,7 @@ django-redis
 pycryptodome
 raven
 django-import-export
+itsdangerous
+cryptography
+msgpack
+celery

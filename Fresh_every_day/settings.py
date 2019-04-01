@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-
+import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+sys.path.insert(0,os.path.join(BASE_DIR,'apps'))
+sys.path.insert(1,os.path.join(BASE_DIR,'api'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -27,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MEDIA_URL ='/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Application definition
 
@@ -37,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'django_filters',
+    'user.apps.UserConfig',
 ]
 
 MIDDLEWARE = [
@@ -122,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'Asiz/Shanghai'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -143,3 +149,100 @@ CORS_ORIGIN_ALLOW_ALL=True
 CORS_ORIGIN_WHITELIST = (
     '*',
 )
+
+AUTH_USER_MODEL='user.User'
+
+AUTHENTICATION_BACKENDS = (
+    'utils.authentication.UserModelBackend',
+)
+
+REST_FRAMEWORK=\
+    {
+    # #设置所有接口都需要验证
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    #                               ),
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'utils.authentication.TokenAuthentication',
+                                        ),
+    #'UNAUTHENTICATED_USER':lambda :'匿名用户'
+    # 'DEFAULT_THROTTLE_CLASSES': (
+    # 'rest_framework.throttling.AnonRateThrottle',
+    # 'rest_framework.throttling.UserRateThrottle'
+    #                           ),
+    # 'DEFAULT_THROTTLE_RATES': {
+    # 'anon': '1/minute',
+    # 'user': '1/minute'        },
+    }
+
+FERNET_TOKEN ={
+            "KEY": b"_NIHq7FBB6oUBXeteylToGBqt09QxobBdXtBFSxnSCY=",
+            }
+ItsDangerousToken={
+            'KEY':'xxx'
+            }
+TOKEN_FILEDS=('username','is_admin')
+TOKEN_EXPIRS=1000
+
+CACHES = {
+    'default': {
+        'BACKEND': "django_redis.cache.RedisCache",
+        "LOCATION": "redis://192.168.187.132:6379/1",
+        'TIMEOUT':600,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "COMPRESSOR": "django_redis.compressors.zlib.ZlibCompressor",
+                    }
+                },
+    'user': {
+        'BACKEND': "django_redis.cache.RedisCache",
+        "LOCATION": "redis://192.168.187.132:6379/10",
+        'TIMEOUT':600,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "COMPRESSOR": "django_redis.compressors.zlib.ZlibCompressor",
+                    }
+                },
+}
+
+SMS_CONF={'data':"""
+        <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+            <s:Body>
+                <SendMessage3 xmlns="http://openmas.chinamobile.com/sms">
+                    <destinationAddresses xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+                                          xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+                        <a:string>{mobile}</a:string>
+                    </destinationAddresses>
+                    <message>【我的私人项目】亲爱的{user}，您的验证码是{code}。有效期为{min}，请尽快验证</message>
+                    <extendCode>5</extendCode>
+                    <applicationId>zzb3</applicationId>
+                    <password>VBunGt5VLv4V</password>
+                </SendMessage3>
+            </s:Body>
+        </s:Envelope>
+        """,
+        'url':'http://111.1.18.21:9080/OpenMasService',
+        'headers':{
+              'Content-Type': 'text/xml',
+              'SOAPAction': 'http://openmas.chinamobile.com/sms/ISms/SendMessage3'
+                    }
+        }
+SMS_EXPIRS=1000
+REGEX_MOBILE = "^1[358]\d{9}$|^147\d{8}$|^176\d{8}$"
+
+REDIS_HOST = 'redis://192.168.187.132:6379/'
+BROKER_BACKEND = "redis"
+BROKER_URL = REDIS_HOST + "8"
+REDIS_CONNECT_RETRY = True
+CELERY_SEND_EVENTS = True
+CELERY_RESULT_BACKEND = 'redis'
+CELERY_TASK_RESULT_EXPIRES = 10
+CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 31104000}
+CELERY_DEFAULT_QUEUE = 'default'
+CELERY_DEFAULT_EXCHANGE_TYPE = 'topic'
+CELERY_DEFAULT_ROUTING_KEY = 'default'
+CELERY_IMPORTS = ('user.celery',)
