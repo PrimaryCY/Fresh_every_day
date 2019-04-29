@@ -9,6 +9,8 @@ from api.mixins import RetrieveModelMixin, UpdateModelMixin, CreateModelMixin, D
 from rest_framework.viewsets import GenericViewSet
 from rest_framework import mixins
 
+from utils.redis_desc import RedisCache
+
 
 class ModelViewSet(CreateModelMixin,
                    RetrieveModelMixin,
@@ -16,12 +18,50 @@ class ModelViewSet(CreateModelMixin,
                    DestroyModelMixin,
                    mixins.ListModelMixin,
                    GenericViewSet):
-    """
-    A viewset that provides default `create()`, `retrieve()`, `update()`,
-    `partial_update()`, `destroy()` and `list()` actions.
-    """
+
     pass
 
+class RedisCacheModelViewSet(ModelViewSet):
+    redis_key=None              #存入reid的key名
+    redis=None                  #使用哪个redis实例
+    redis_result_key=None       #返回的数据字典key名
+
+    def get_redis(self):
+        return self.redis
+
+    def get_redis_key(self):
+        return self.redis_key
+
+    def get_list_queryset(self):
+        """获取list时redis处理的queryset"""
+        return self.get_queryset()
+
+    @RedisCache()
+    def create(self, request, *args, **kwargs):
+        return super().create(request,*args,**kwargs)
+    @RedisCache()
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
+    @RedisCache()
+    def retrieve(self, request, *args, **kwargs):
+        return super().retrieve(request, *args, **kwargs)
+
+    @RedisCache()
+    def destroy(self, request, *args, **kwargs):
+        return super().destroy(request, *args, **kwargs)
+
+    @RedisCache()
+    def update(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)
+
+    @RedisCache()
+    def partial_update(self, request, *args, **kwargs):
+        return super().partial_update(request, *args, **kwargs)
+
+    class RedisMeta:
+        model=None#初始化使用哪个Model
+        fields=None#序列化哪几个字段
 
 class ReadOnlyModelViewSet(RetrieveModelMixin,
                            mixins.ListModelMixin,

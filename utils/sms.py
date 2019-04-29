@@ -7,7 +7,7 @@ from django.utils.encoding import force_bytes
 
 from Fresh_every_day.settings import SMS_CONF
 
-class send_sms(object):
+class Sms(object):
 
     def __init__(self, SMS_CONF,*args,**kwargs):
         """发送短信验证码"""

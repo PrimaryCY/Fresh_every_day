@@ -14,8 +14,11 @@ import os
 import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,BASE_DIR)
 sys.path.insert(0,os.path.join(BASE_DIR,'apps'))
-sys.path.insert(1,os.path.join(BASE_DIR,'api'))
+sys.path.insert(0,os.path.join(BASE_DIR,'api'))
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -26,7 +29,7 @@ SECRET_KEY = 'q_b_h3yx)6+_+u)##a!)vc%$xa!$m9zc6!33e9h036))^^(j3c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*',]
 
 MEDIA_URL ='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -43,6 +46,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'user.apps.UserConfig',
+    'apps.video',
+    'mptt',
 ]
 
 MIDDLEWARE = [
@@ -85,12 +90,17 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Fresh_every_day_db',
-        'HOST': '192.168.187.132',
+        'HOST': '192.168.187.136',
         'PORT': 3306,
         'USER': 'root',
         'PASSWORD': 'oracle',
         #使用mysql的innodb引擎,MyISAM虽快但没有事务rollback
         'OPTIONS':{'init_command':'SET default_storage_engine=INNODB;'},
+        "CONN_MAX_AGE": 600,
+        'TEST': {
+            'CHARSET': 'utf8',
+            'COLLATION': 'utf8_general_ci',
+        }
     },
     # #配置数据库slave节点机
     # 'slave': {
@@ -128,6 +138,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'zh-hans'
 
+DATETIME_FORMAT = 'Y-m-d H:i:s'
+
 TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
@@ -141,6 +153,9 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+#指定导出的静态文件存放目录
+STATIC_ROOT=os.path.join(BASE_DIR,'www')
+
 
 #设置可以跨域访问
 CORS_ORIGIN_ALLOW_ALL=True
@@ -173,30 +188,35 @@ REST_FRAMEWORK=\
     # 'DEFAULT_THROTTLE_RATES': {
     # 'anon': '1/minute',
     # 'user': '1/minute'        },
+    'DATETIME_FORMAT':"%Y-%m-%d",
+    'HTML_SELECT_CUTOFF':10000,
+    'HTML_SELECT_CUTOFF_TEXT':'太多了,我加载不出来了',
     }
 
 FERNET_TOKEN ={
             "KEY": b"_NIHq7FBB6oUBXeteylToGBqt09QxobBdXtBFSxnSCY=",
             }
-ItsDangerousToken={
-            'KEY':'xxx'
+ITSDANGEROUSTOKEN={
+            'EXPIRS':6000
             }
 TOKEN_FILEDS=('username','is_admin')
-TOKEN_EXPIRS=1000
+TOKEN_EXPIRS=7*24*3600
 
 CACHES = {
     'default': {
         'BACKEND': "django_redis.cache.RedisCache",
-        "LOCATION": "redis://192.168.187.132:6379/1",
+        "LOCATION": "redis://192.168.187.136:6379/1",
         'TIMEOUT':600,
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "COMPRESSOR": "django_redis.compressors.zlib.ZlibCompressor",
+            #默认解码
+            'CONNECTION_POOL_KWARGS': {'decode_responses': True},
                     }
                 },
     'user': {
         'BACKEND': "django_redis.cache.RedisCache",
-        "LOCATION": "redis://192.168.187.132:6379/10",
+        "LOCATION": "redis://192.168.187.136:6379/10",
         'TIMEOUT':600,
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
@@ -205,44 +225,95 @@ CACHES = {
                 },
 }
 
-SMS_CONF={'data':"""
-        <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
-            <s:Body>
-                <SendMessage3 xmlns="http://openmas.chinamobile.com/sms">
-                    <destinationAddresses xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
-                                          xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-                        <a:string>{mobile}</a:string>
-                    </destinationAddresses>
-                    <message>【我的私人项目】亲爱的{user}，您的验证码是{code}。有效期为{min}，请尽快验证</message>
-                    <extendCode>5</extendCode>
-                    <applicationId>*****</applicationId>
-                    <password>*********</password>
-                </SendMessage3>
-            </s:Body>
-        </s:Envelope>
-        """,
-        'url':'http://111.1.18.21:9080/OpenMasService',
-        'headers':{
-              'Content-Type': 'text/xml',
-              'SOAPAction': 'http://openmas.chinamobile.com/sms/ISms/SendMessage3'
-                    }
-        }
-SMS_EXPIRS=1000
 REGEX_MOBILE = "^1[358]\d{9}$|^147\d{8}$|^176\d{8}$"
+EMAIL_EXPIRS=1000
+REGEX_EMAIL="^[0-9a-zA-Z_]{0,19}@[0-9a-zA-Z]{1,13}\.[com,cn,net]{1,3}$"
 
-REDIS_HOST = 'redis://192.168.187.132:6379/'
-BROKER_BACKEND = "redis"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMIAL_USE_TLS = False
+EMAIL_USE_SSL=True
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = '907031027@qq.com'
+EMAIL_HOST_PASSWORD = 'bjsaxrusvnxlbcbf'
+EMAIL_FROM = EMAIL_HOST_USER
+EMAIL_SUBJECT = "个人项目使用的邮件"
+EMAIL_CONTENT = '这是一封重要的邮件.'
+EMAIL_HTML_CONTENT = '<p>请点击下方连接来重置您的密码<a href="{}" target="_blank">{}</a></p>'
+
+# import djcelery
+# djcelery.setup_loader()
+REDIS_HOST = 'redis://192.168.187.136:6379/'
+#BROKER_BACKEND = 'redis://'
+#设置broker任务队列所在位置
 BROKER_URL = REDIS_HOST + "8"
+#并发worker数
+CELERYD_CONCURRENCY = 1
+#celery的时区设置
+CELERY_TIMEZONE = 'Asia/Shanghai'
+#防止celery的死锁情况出现
+#CELERYD_FORCE_EXECV = True
+# 每个worker最多执行1个任务就会被销毁，可防止内存泄露
+CELERYD_MAX_TASKS_PER_CHILD = 5
+# 单个任务的运行时间不超过此值，否则会被SIGKILL 信号杀死
+CELERYD_TASK_TIME_LIMIT = 60
 REDIS_CONNECT_RETRY = True
 CELERY_SEND_EVENTS = True
-CELERY_RESULT_BACKEND = 'redis'
+#CELERY_RESULT_BACKEND = BROKER_BACKEND
 CELERY_TASK_RESULT_EXPIRES = 10
 CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ENABLE_UTC = False
+#任务发出后，经过一段时间还未收到acknowledge , 就将任务重新交给其他worker执行
 BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 31104000}
 CELERY_DEFAULT_QUEUE = 'default'
 CELERY_DEFAULT_EXCHANGE_TYPE = 'topic'
 CELERY_DEFAULT_ROUTING_KEY = 'default'
-CELERY_IMPORTS = ('user.celery',)
+CELERY_IMPORTS = ("apps.user.celery",)
+
+
+#APPEND_SLASH=False
+# # 定时任务
+# CELERYBEAT_SCHEDULE = {
+#     'msg_notify': {
+#         'task': 'async_task.notify.msg_notify',
+#         'schedule': timedelta(seconds=10),
+#         # 'args': (redis_db),
+#         'options': {'queue': 'my_period_task'}
+#     },
+#     'report_result': {
+#         'task': 'async_task.tasks.report_result',
+#         'schedule': timedelta(seconds=10),
+#         # 'args': (redis_db),
+#         'options': {'queue': 'my_period_task'}
+#     },
+#     # 'report_retry': {
+#     #    'task': 'async_task.tasks.report_retry',
+#     #    'schedule': timedelta(seconds=60),
+#     #    'options' : {'queue':'my_period_task'}
+#     # },
+#
+# }
+from django_redis import get_redis_connection
+COMMON_REDIS=get_redis_connection('default')
+
+
+PASSWORD_HASHERS = [
+    'utils.authentication.SHA256',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+]
+
+
+try:
+    from .settings_local import *
+
+    from . import settings_local
+
+    if hasattr(settings_local, 'CUSTOM_INSTALLED_APPS'):
+        INSTALLED_APPS += settings_local.CUSTOM_INSTALLED_APPS
+    if hasattr(settings_local, 'CUSTOM_MIDDLEWARE_CLASSES'):
+        MIDDLEWARE += settings_local.CUSTOM_MIDDLEWARE
+except ImportError:
+    pass

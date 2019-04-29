@@ -4,14 +4,17 @@
 import msgpack
 import hmac
 
+from itsdangerous import TimedJSONWebSignatureSerializer as dangerous
+from itsdangerous.exc import SignatureExpired,BadSignature
 from cryptography.fernet import Fernet, InvalidToken
 from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.exceptions import APIException
 from django.utils.encoding import force_str,force_bytes
 from django_redis import get_redis_connection
 from django.contrib.auth import get_user_model
-from rest_framework.exceptions import APIException
 
 from Fresh_every_day import settings
+
 
 User=get_user_model()
 redis=get_redis_connection('user')
@@ -42,7 +45,6 @@ class Token(object):
         return user_info
 
     def check_access_token(self,token):
-
         if not token:
             raise AuthenticationFailed("未登录")
         token=force_bytes(token[::-1])
@@ -59,8 +61,8 @@ class Token(object):
         return user,user_info
 
     def check_db_token(self,user_info,token):
-        redis_token=redis.get(Token.get_token_redis_key(user_info))[::-1]
-        if not redis_token or not hmac.compare_digest(redis_token,token):
+        redis_token=redis.get(Token.get_token_redis_key(user_info))
+        if not redis_token or not hmac.compare_digest(redis_token[::-1],token):
             raise InvalidToken()
         return self.get_user(user_info)
 
@@ -71,9 +73,36 @@ class Token(object):
             raise InvalidToken()
 
     @staticmethod
-    def get_token_redis_key(user_info):
-        key=user_info.get('username')
-        return force_bytes(':'.join((key,'token')))
+    def get_token_redis_key(result:dict):
+        username=result.get('username')
+        return force_bytes(':'.join((username,'token')))
+
+    def delete_db_token(self,redis_key):
+        temp=redis.get(redis_key)
+        if temp:
+            redis.delete(redis_key)
+            return True
 
 
+class ItsDangerousToken(object):
+    token=dangerous(settings.SECRET_KEY, settings.ITSDANGEROUSTOKEN['EXPIRS'])
+
+    def encode_token(self,user):
+        token=self.token.dumps(user.id)
+        return token.decode('utf8')
+
+    def decode_token(self,token):
+        try:
+            user_id=self.token.loads(token)
+        except SignatureExpired:
+            raise AuthenticationFailed({'error':'令牌过期'})
+        except BadSignature:
+            raise AuthenticationFailed({'error':'令牌不正确'})
+        user=User.objects.get(id=user_id)
+        user.is_email=True
+        user.save()
+        return user,''
+
+
+its_dangerous=ItsDangerousToken()
 token_ins=Token()

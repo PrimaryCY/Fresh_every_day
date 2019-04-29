@@ -19,7 +19,7 @@ from django.views.static import serve
 from django.conf import settings
 
 import api
-from api.cms.user import LoginViewSet
+
 
 urlpatterns = [
     #修改media文件路由
@@ -27,8 +27,6 @@ urlpatterns = [
     #导入rest framework
     url(r'^api_auth/',include('rest_framework.urls',namespace='rest_framework')),
 
-    url(r'^api/',include(api.urls)),
-
-    url(r'^',include(api.cms.urls))
+    url(r'^',include(api.urls)),
 
 ]
