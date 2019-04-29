@@ -234,7 +234,6 @@ EMIAL_USE_TLS = False
 EMAIL_USE_SSL=True
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 465
-EMAIL_FROM = EMAIL_HOST_USER
 EMAIL_SUBJECT = "个人项目使用的邮件"
 EMAIL_CONTENT = '这是一封重要的邮件.'
 EMAIL_HTML_CONTENT = '<p>请点击下方连接来重置您的密码<a href="{}" target="_blank">{}</a></p>'
