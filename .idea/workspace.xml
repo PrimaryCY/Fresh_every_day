@@ -2,66 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92bc581c-997e-4e55-8517-87b4070a877a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Fresh_every_day/settings_local.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alipay/alipay.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alipay/alipay_key.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alipay/private_key" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alipay/pul_key" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alipay/沙箱账号" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/cms/video.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/web/user.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/web/video.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/user/migrations/0002_auto_20190413_1127.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/user/migrations/0003_auto_20190413_1543.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/user/migrations/0004_auto_20190413_1546.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/user/migrations/0005_auto_20190414_2056.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/user/migrations/0006_auto_20190425_1846.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/video/celery.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/video/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/video/migrations/0002_auto_20190414_2105.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/video/migrations/0003_auto_20190414_2108.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/video/migrations/0004_auto_20190415_2256.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/video/migrations/0005_auto_20190415_2304.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/video/migrations/0006_auto_20190425_1846.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/video/migrations/0007_auto_20190426_1701.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/video/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/video/serializer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/MySQL.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/department.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/mean.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/model_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/sql.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/temp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/filters.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/routes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/util.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uwsgi.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fresh_every_day/celery.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fresh_every_day/celery.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fresh_every_day/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fresh_every_day/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fresh_every_day/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fresh_every_day/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/cms/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/cms/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/cms/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/cms/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/viewsets.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/viewsets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/web/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/web/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/celery.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/celery.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/migrations/0002_auto_20190330_2120.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/migrations/0003_auto_20190331_0054.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/serializer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/authentication.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/redis_desc.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/redis_desc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/sms.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/sms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/token.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/token.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -106,100 +47,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/cms/user.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="91" column="30" selection-start-line="91" selection-start-column="30" selection-end-line="91" selection-end-column="30" />
-              <folding>
-                <element signature="e#63#109#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/user/serializer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="132" column="8" selection-start-line="132" selection-start-column="8" selection-end-line="132" selection-end-column="8" />
-              <folding>
-                <element signature="e#63#72#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/redis_desc.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="97" column="31" selection-start-line="97" selection-start-column="31" selection-end-line="97" selection-end-column="31" />
-              <folding>
-                <element signature="e#63#74#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/user/celery.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-              <folding>
-                <element signature="e#63#114#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/requirements.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/sms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Fresh_every_day/settings_local.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Fresh_every_day/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="223" column="21" selection-start-line="223" selection-start-column="21" selection-end-line="223" selection-end-column="21" />
+            <state relative-caret-position="455">
+              <caret line="318" column="8" lean-forward="true" selection-start-line="318" selection-start-column="8" selection-end-line="318" selection-end-column="8" />
               <folding>
                 <element signature="e#316#325#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/user/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3192">
-              <caret line="122" column="8" selection-start-line="122" selection-start-column="8" selection-end-line="122" selection-end-column="8" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -609,7 +463,7 @@
       <workItem from="1556282268889" duration="7517000" />
       <workItem from="1556335727900" duration="17698000" />
       <workItem from="1556414949807" duration="12593000" />
-      <workItem from="1556502313902" duration="3890000" />
+      <workItem from="1556502313902" duration="4590000" />
     </task>
     <servers />
   </component>
@@ -646,7 +500,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="583207000" />
+    <option name="totallyTimeSpent" value="583907000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -659,8 +513,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.13905326" visible="true" weight="0.18563357" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.13905326" visible="true" weight="0.18563357" />
       <window_info id="Favorites" order="1" sideWeight="0.5326279" side_tool="true" weight="0.18644068" />
       <window_info id="Structure" order="2" sideWeight="0.8609468" weight="0.23890235" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -673,7 +528,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="manage.py@Fresh_every_day" order="8" weight="0.35449734" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.9029982" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.9029982" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5004035" side_tool="true" weight="0.329806" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.329806" />
       <window_info anchor="bottom" auto_hide="true" x="0" y="23" width="1281" height="658" id="Python Console" maximized="true" order="13" type="WINDOWED" weight="0.340388" />
@@ -1061,16 +916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/user/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3192">
-          <caret line="122" column="8" selection-start-line="122" selection-start-column="8" selection-end-line="122" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -1108,20 +953,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Fresh_every_day/settings_local.py">
+    <entry file="file://$PROJECT_DIR$/utils/sms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="442">
+          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/user/serializer.py">
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="132" column="8" selection-start-line="132" selection-start-column="8" selection-end-line="132" selection-end-column="8" />
-          <folding>
-            <element signature="e#63#72#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="343">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1135,20 +977,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Fresh_every_day/settings.py">
+    <entry file="file://$PROJECT_DIR$/apps/user/serializer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="223" column="21" selection-start-line="223" selection-start-column="21" selection-end-line="223" selection-end-column="21" />
+        <state relative-caret-position="207">
+          <caret line="132" column="8" selection-start-line="132" selection-start-column="8" selection-end-line="132" selection-end-column="8" />
           <folding>
-            <element signature="e#316#325#0" expanded="true" />
+            <element signature="e#63#72#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/sms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -1172,10 +1007,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
+    <entry file="file://$PROJECT_DIR$/Fresh_every_day/settings_local.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        <state relative-caret-position="560">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/user/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="122" column="8" selection-start-line="122" selection-start-column="8" selection-end-line="122" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fresh_every_day/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="318" column="8" lean-forward="true" selection-start-line="318" selection-start-column="8" selection-end-line="318" selection-end-column="8" />
+          <folding>
+            <element signature="e#316#325#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
